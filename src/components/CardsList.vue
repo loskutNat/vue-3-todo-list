@@ -1,27 +1,32 @@
 <template>
-  <input type="text" v-model="newCard" @keypress.enter="updateList">
-  <ul>
-    <li v-for="(card, index) in cards" :key="index">{{ card }}</li>
-  </ul>
-  <p>{{ todoListCount }}</p>
+  <AddCard />
+  <div class="q-pa-md q-gutter-md">
+    <q-list v-if="cards.length" bordered separator>
+      <Card v-for="(card, index) in cards" :key="index" :label="card" :card-index="index"/>
+    </q-list>
+    <q-banner v-else class="bg-primary text-white">
+      You have no tasks.
+    </q-banner>
+  </div>
 </template>
 
 <script>
 import { useStore } from 'vuex';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import AddCard from '@/components/AddCard';
+import Card from '@/components/Card';
 
 export default {
+  name: 'CardsList',
+  components: {
+    AddCard,
+    Card,
+  },
   setup() {
     const store = useStore();
-    const newCard = ref('');
     const cards = computed(() => store.state.cards);
-    const todoListCount = computed(() => store.getters.todoListCount)
-    function updateList() {
-      store.dispatch('addCard', newCard.value);
-      newCard.value = '';
-    }
 
-    return { newCard, cards, todoListCount, updateList };
+    return { cards };
   },
 };
 </script>
