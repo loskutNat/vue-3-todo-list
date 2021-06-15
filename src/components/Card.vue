@@ -64,13 +64,15 @@ export default {
       if (success) {
         store.dispatch('editCard', {
           index: props.cardIndex,
-          newValue: editCardLabel.value
+          newValue: editCardLabel.value,
         });
         isCardEdit.value = false;
       }
     }
 
-    return { editCardLabel, isCardEdit, cardInput, deleteCard, editCard, toggleEditCard };
+    return {
+      editCardLabel, isCardEdit, cardInput, deleteCard, editCard, toggleEditCard,
+    };
   },
 };
 </script>

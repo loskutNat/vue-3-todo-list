@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
 import { computed } from 'vue';
+import { useStore } from 'vuex';
 import AddCard from '@/components/AddCard';
 import Card from '@/components/Card';
 

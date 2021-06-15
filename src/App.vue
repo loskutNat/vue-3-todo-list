@@ -35,7 +35,7 @@ export default {
     const todoListCount = computed(() => store.getters.todoListCount);
     return { todoListCount };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
